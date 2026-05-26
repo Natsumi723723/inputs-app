@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INPUTS — アイコンセット</title>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #FFF0F5;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#FFB7C540 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+      pointer-events: none;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #2D1035;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, #FF6B9D, #C084FC 60%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub {
+      text-align: center;
+      color: #C4A8CF;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 44px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 26px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 6px 24px #FF6B9D18;
+      transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-7px) scale(1.03);
+      box-shadow: 0 16px 36px #FF6B9D28;
+    }
+
+    .badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .name  { font-size: 0.82rem; font-weight: 700; color: #5C3B72; text-align: center; line-height: 1.35; }
+    .type  { font-size: 0.68rem; color: #C4A8CF; font-weight: 400; margin-top: 2px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>INPUTS <em>アイコンセット</em></h1>
+  <p class="sub">7 categories · kawaii edition</p>
+
+  <div class="grid">
+
+    <!-- ① Web -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#FFE0EC,#FFCDD9)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- browser frame -->
+          <rect x="5" y="9" width="44" height="32" rx="9" fill="white" stroke="#FF6B9D" stroke-width="2.5"/>
+          <!-- top bar fill -->
+          <rect x="5" y="9" width="44" height="12" rx="9" fill="#FF6B9D" opacity="0.18"/>
+          <rect x="5" y="17" width="44" height="4" fill="#FF6B9D" opacity="0.18"/>
+          <!-- dots -->
+          <circle cx="14" cy="15" r="2.8" fill="#FF6B9D"/>
+          <circle cx="21.5" cy="15" r="2.8" fill="#FFB7C5"/>
+          <circle cx="29" cy="15" r="2.8" fill="#FFD6E0"/>
+          <!-- address bar -->
+          <rect x="33" y="12" width="12" height="6" rx="3" fill="white" opacity="0.65"/>
+          <!-- content lines -->
+          <rect x="10" y="27" width="22" height="3" rx="1.5" fill="#FFB7C5"/>
+          <rect x="10" y="32" width="16" height="2.5" rx="1.25" fill="#FFD6E0"/>
+          <rect x="10" y="37" width="26" height="2" rx="1" fill="#FFD6E0" opacity="0.6"/>
+          <!-- cute star top-right -->
+          <path d="M41 27 l1.2 3.6 3.8 0 -3.1 2.2 1.2 3.6 -3.1-2.3 -3.1 2.3 1.2-3.6 -3.1-2.2 3.8 0 z" fill="#FF6B9D" opacity="0.75"/>
+        </svg>
+      </div>
+      <div><div class="name">Webページ</div><div class="type">web page</div></div>
+    </div>
+
+    <!-- ② 動画 -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#EDE4FF,#D9CAFF)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- screen -->
+          <rect x="5" y="13" width="32" height="24" rx="7" fill="white" stroke="#9B59F5" stroke-width="2.5"/>
+          <!-- play circle -->
+          <circle cx="21" cy="25" r="8" fill="#9B59F5" opacity="0.15"/>
+          <!-- play triangle -->
+          <path d="M18 21.5 L28 25 L18 28.5 Z" fill="#9B59F5"/>
+          <!-- camera arm -->
+          <path d="M37 18 L48 14 L48 36 L37 32 Z" fill="white" stroke="#9B59F5" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- sparkles -->
+          <circle cx="8" cy="43" r="2.2" fill="#C4B5FD"/>
+          <circle cx="14" cy="46" r="1.6" fill="#DDD6FE"/>
+          <circle cx="5" cy="47" r="1.2" fill="#EDE4FF"/>
+          <!-- small star -->
+          <path d="M42 9 l.9 2.7 2.8 0 -2.3 1.7 .9 2.7 -2.3-1.7 -2.3 1.7 .9-2.7 -2.3-1.7 2.8 0 z" fill="#9B59F5" opacity="0.6"/>
+        </svg>
+      </div>
+      <div><div class="name">動画</div><div class="type">video</div></div>
+    </div>
+
+    <!-- ③ AI会話 -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#D4F2FF,#BAE6FF)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- bubble 1 -->
+          <rect x="5" y="7" width="30" height="22" rx="11" fill="white" stroke="#0EA5E9" stroke-width="2.5"/>
+          <!-- tail 1 -->
+          <path d="M10 29 L6 40 L20 29 Z" fill="white" stroke="#0EA5E9" stroke-width="2" stroke-linejoin="round"/>
+          <!-- bubble 2 -->
+          <rect x="19" y="28" width="30" height="20" rx="10" fill="white" stroke="#0EA5E9" stroke-width="2.2"/>
+          <!-- dots in bubble 1 -->
+          <circle cx="14" cy="18" r="2.2" fill="#0EA5E9"/>
+          <circle cx="20" cy="18" r="2.2" fill="#0EA5E9"/>
+          <circle cx="26" cy="18" r="2.2" fill="#0EA5E9"/>
+          <!-- sparkle star in bubble 2 -->
+          <path d="M34 34 l1 3 3 0 -2.4 1.8 .9 3 -2.5-1.8 -2.5 1.8 .9-3 -2.4-1.8 3 0 z" fill="#0EA5E9" opacity="0.7"/>
+          <circle cx="44" cy="36" r="1.8" fill="#7DD3FC"/>
+        </svg>
+      </div>
+      <div><div class="name">AI会話</div><div class="type">ai chat</div></div>
+    </div>
+
+    <!-- ④ 本 -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#FFF1DC,#FFE0B2)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- left page -->
+          <path d="M8 11 C14 9 20 9 27 11 L27 43 C20 41 14 41 8 43 Z" fill="#FED7AA" stroke="#F97316" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- right page -->
+          <path d="M46 11 C40 9 34 9 27 11 L27 43 C34 41 40 41 46 43 Z" fill="white" stroke="#F97316" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- spine -->
+          <line x1="27" y1="11" x2="27" y2="43" stroke="#F97316" stroke-width="2"/>
+          <!-- lines left -->
+          <line x1="12" y1="20" x2="24" y2="22" stroke="#FCA5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="12" y1="26" x2="24" y2="28" stroke="#FCA5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="12" y1="32" x2="21" y2="34" stroke="#FCA5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- bookmark -->
+          <path d="M37 11 L37 26 L33 22.5 L29 26 L29 11 Z" fill="#F97316" opacity="0.65"/>
+          <!-- heart right -->
+          <path d="M36 33 C36 31.5 37.5 30 39 31.5 C40.5 30 42 31.5 39 35 Z" fill="#FCA5A1"/>
+        </svg>
+      </div>
+      <div><div class="name">本・読書</div><div class="type">book</div></div>
+    </div>
+
+    <!-- ⑤ 音楽 -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#DCFFE8,#BBF7D0)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- headphone arc -->
+          <path d="M12 30 C12 19 42 19 42 30" stroke="#22C55E" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <!-- left cup -->
+          <rect x="8" y="29" width="10" height="14" rx="5" fill="white" stroke="#22C55E" stroke-width="2.5"/>
+          <!-- right cup -->
+          <rect x="36" y="29" width="10" height="14" rx="5" fill="white" stroke="#22C55E" stroke-width="2.5"/>
+          <!-- inner pads -->
+          <rect x="11" y="32" width="4" height="8" rx="2" fill="#86EFAC" opacity="0.6"/>
+          <rect x="39" y="32" width="4" height="8" rx="2" fill="#86EFAC" opacity="0.6"/>
+          <!-- music note -->
+          <path d="M24 22 L24 14 L33 12 L33 20" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="23" r="2.8" fill="#22C55E"/>
+          <circle cx="31" cy="21" r="2.8" fill="#22C55E"/>
+          <!-- dots -->
+          <circle cx="40" cy="13" r="1.8" fill="#86EFAC"/>
+          <circle cx="44" cy="18" r="1.2" fill="#BBF7D0"/>
+        </svg>
+      </div>
+      <div><div class="name">音楽・Podcast</div><div class="type">music</div></div>
+    </div>
+
+    <!-- ⑥ アイデア -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#FFFBD0,#FFF09E)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- glow rays -->
+          <line x1="27" y1="5" x2="27" y2="2" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="37" y1="8" x2="39" y2="6" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="17" y1="8" x2="15" y2="6" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="42" y1="22" x2="45" y2="22" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="12" y1="22" x2="9" y2="22" stroke="#FDE047" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- bulb body -->
+          <path d="M27 7 C18 7 13 14 13 21 C13 27 17 30 19.5 33 L19.5 37 C19.5 38.1 20.4 39 21.5 39 L32.5 39 C33.6 39 34.5 38.1 34.5 37 L34.5 33 C37 30 41 27 41 21 C41 14 36 7 27 7 Z" fill="#FEF08A" stroke="#EAB308" stroke-width="2.5"/>
+          <!-- base lines -->
+          <rect x="21" y="39" width="12" height="3" rx="1.5" fill="#EAB308" opacity="0.55"/>
+          <rect x="22.5" y="42" width="9" height="3" rx="1.5" fill="#EAB308" opacity="0.35"/>
+          <!-- star inside -->
+          <path d="M27 14 l1.6 5 5.2 0 -4.2 3.1 1.6 5 -4.2-3.1 -4.2 3.1 1.6-5 -4.2-3.1 5.2 0 z" fill="#EAB308" opacity="0.85"/>
+        </svg>
+      </div>
+      <div><div class="name">アイデア・メモ</div><div class="type">idea</div></div>
+    </div>
+
+    <!-- ⑦ 写真 -->
+    <div class="card">
+      <div class="badge" style="background: linear-gradient(135deg,#F3E8FF,#E9D5FF)">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <!-- body -->
+          <rect x="5" y="16" width="44" height="28" rx="9" fill="white" stroke="#A855F7" stroke-width="2.5"/>
+          <!-- viewfinder bump -->
+          <path d="M18 16 L18 11 C18 9.9 18.9 9 20 9 L34 9 C35.1 9 36 9.9 36 11 L36 16 Z" fill="white" stroke="#A855F7" stroke-width="2.5"/>
+          <!-- lens outer -->
+          <circle cx="27" cy="30" r="9.5" fill="#F3E8FF" stroke="#A855F7" stroke-width="2.5"/>
+          <!-- lens inner gradient -->
+          <circle cx="27" cy="30" r="5.5" fill="#C084FC" opacity="0.5"/>
+          <circle cx="27" cy="30" r="3" fill="#A855F7" opacity="0.4"/>
+          <!-- shine -->
+          <circle cx="23.5" cy="26.5" r="1.8" fill="white" opacity="0.85"/>
+          <!-- flash -->
+          <rect x="37" y="20" width="6" height="5" rx="2.5" fill="#C084FC" opacity="0.7"/>
+          <!-- heart decoration -->
+          <path d="M11 24 C11 22.5 12.5 21 14 22.5 C15.5 21 17 22.5 14 26 Z" fill="#C084FC" opacity="0.8"/>
+          <!-- sparkle -->
+          <circle cx="42" cy="40" r="1.8" fill="#DDD6FE"/>
+          <circle cx="45" cy="35" r="1.2" fill="#E9D5FF"/>
+        </svg>
+      </div>
+      <div><div class="name">画像・写真</div><div class="type">photo</div></div>
+    </div>
+
+  </div>
+
+  <!-- size strip -->
+  <div style="margin-top:44px; text-align:center;">
+    <p style="color:#C4A8CF;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">SIZE PREVIEW</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;background:#fff;padding:18px 28px;border-radius:18px;box-shadow:0 6px 24px #FF6B9D14;display:inline-flex;">
+      <!-- 64 -->
+      <div style="width:64px;height:64px;background:linear-gradient(135deg,#FFE0EC,#FFCDD9);border-radius:18px;display:flex;align-items:center;justify-content:center;">
+        <svg width="46" height="46" viewBox="0 0 54 54" fill="none"><rect x="5" y="9" width="44" height="32" rx="9" fill="white" stroke="#FF6B9D" stroke-width="2.5"/><rect x="5" y="9" width="44" height="12" rx="9" fill="#FF6B9D" opacity="0.2"/><rect x="5" y="17" width="44" height="4" fill="#FF6B9D" opacity="0.2"/><circle cx="14" cy="15" r="2.8" fill="#FF6B9D"/><circle cx="21.5" cy="15" r="2.8" fill="#FFB7C5"/><circle cx="29" cy="15" r="2.8" fill="#FFD6E0"/><rect x="10" y="27" width="22" height="3" rx="1.5" fill="#FFB7C5"/><rect x="10" y="32" width="16" height="2.5" rx="1.25" fill="#FFD6E0"/></svg>
+      </div>
+      <!-- 44 -->
+      <div style="width:44px;height:44px;background:linear-gradient(135deg,#FFE0EC,#FFCDD9);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <svg width="30" height="30" viewBox="0 0 54 54" fill="none"><rect x="5" y="9" width="44" height="32" rx="9" fill="white" stroke="#FF6B9D" stroke-width="2.5"/><rect x="5" y="9" width="44" height="12" rx="9" fill="#FF6B9D" opacity="0.2"/><rect x="5" y="17" width="44" height="4" fill="#FF6B9D" opacity="0.2"/><circle cx="14" cy="15" r="2.8" fill="#FF6B9D"/><rect x="10" y="27" width="22" height="3" rx="1.5" fill="#FFB7C5"/></svg>
+      </div>
+      <!-- 28 -->
+      <div style="width:28px;height:28px;background:linear-gradient(135deg,#FFE0EC,#FFCDD9);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 54 54" fill="none"><rect x="5" y="9" width="44" height="32" rx="9" fill="white" stroke="#FF6B9D" stroke-width="3"/><rect x="5" y="9" width="44" height="14" rx="9" fill="#FF6B9D" opacity="0.25"/></svg>
+      </div>
+      <span style="color:#C4A8CF;font-size:0.75rem;font-weight:700;">64 · 44 · 28 px</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
