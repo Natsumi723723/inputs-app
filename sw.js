@@ -1,4 +1,4 @@
-const CACHE = 'inputs-v3';
+const CACHE = 'inputs-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -15,7 +15,12 @@ self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    ).then(() => self.clients.claim()).then(() => {
+      // 新しいSWが起動したら全クライアントにリロードを指示
+      self.clients.matchAll({ includeUncontrolled: true }).then(clients => {
+        clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
+      });
+    })
   );
 });
 
