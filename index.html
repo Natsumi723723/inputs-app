@@ -381,9 +381,9 @@
 
     .shelf-books {
       display: flex; align-items: flex-end; gap: 5px;
-      padding: 32px 22px 0; /* top padding for glow overflow */
+      padding: 16px 22px 0;
       overflow-x: auto; -webkit-overflow-scrolling: touch;
-      min-height: 190px;
+      min-height: 230px;
     }
     .shelf-books::-webkit-scrollbar { display: none; }
 
@@ -395,13 +395,10 @@
       box-shadow: 3px 4px 12px rgba(0,0,0,0.28), inset -3px 0 6px rgba(0,0,0,0.18), inset 1px 0 0 rgba(255,255,255,0.22);
       -webkit-tap-highlight-color: transparent;
     }
-    .book:hover, .book:active { transform: translateY(-10px); }
-    /* ときめき度5: ネオン発光 */
-    .book.h5 { box-shadow: 3px 4px 12px rgba(0,0,0,0.28), inset -3px 0 6px rgba(0,0,0,0.18), inset 1px 0 0 rgba(255,255,255,0.22), 0 0 18px rgba(255,200,80,0.55), 0 0 6px rgba(255,200,80,0.35); }
-    .book.h4 { box-shadow: 3px 4px 12px rgba(0,0,0,0.28), inset -3px 0 6px rgba(0,0,0,0.18), inset 1px 0 0 rgba(255,255,255,0.22), 0 0 10px rgba(255,200,80,0.28); }
+    .book:hover, .book:active { transform: translateY(-8px); }
 
-    .bk-title { position: absolute; top: 12px; left: 0; right: 0; bottom: 26px; overflow: hidden; padding: 2px 5px; }
-    .bk-title span { writing-mode: vertical-rl; text-orientation: mixed; font-size: 11.5px; font-weight: 800; color: rgba(255,255,255,0.95); white-space: normal; word-break: break-all; display: block; height: 100%; overflow: hidden; line-height: 1.3; letter-spacing: 0.04em; text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+    .bk-title { position: absolute; top: 12px; left: 0; right: 0; bottom: 26px; overflow: hidden; padding: 2px 5px; display: flex; align-items: center; justify-content: center; }
+    .bk-title span { writing-mode: vertical-rl; text-orientation: mixed; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.95); white-space: nowrap; overflow: hidden; max-height: 100%; line-height: 1.25; letter-spacing: 0.04em; text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
     .bk-meta { position: absolute; bottom: 4px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .bk-date { font-size: 7.5px; color: rgba(255,255,255,0.65); font-weight: 700; white-space: nowrap; }
     .bk-ico  { font-size: 10px; line-height: 1; }
@@ -654,9 +651,11 @@ function bookW(id,heat=1,noteLen=0){
   const nBonus=Math.min(Math.floor(noteLen/25)*2,8); // up to 8 from note
   return base+hBonus+nBonus;
 }
-function bookH(id,heat=1){
-  const base=Math.floor(hsh(id+'_h')*40)+120;     // 120-160 (was 105-143)
-  return base+(heat-1)*10;                         // +0-40 (was +0-36)
+function bookH(id,heat=1,titleLen=0){
+  // タイトル文字数に応じて高さを決める（11px font × 1.25 ≈ 13.75px/char + 40px overhead）
+  const minH=120, maxH=220;
+  const fromTitle=Math.min(maxH, minH + Math.max(0, titleLen-4)*12);
+  return fromTitle+(heat-1)*6;
 }
 
 // ─── Theme ─────────────────────────────────────────────────────────────────
@@ -885,7 +884,7 @@ function renderShelf(){
       const col=BOOK_BG[e.type]||['#888','#555'];
       const h=e.tokimeki||1;
       const w=bookW(e.id,h,(e.note||'').length);
-      const ht=bookH(e.id,h);
+      const ht=bookH(e.id,h,e.title.length);
       const cat=catOf(e.type);
       const meta=shelfMode!=='cat'?`<div class="bk-ico">${cat.icon}</div><div class="bk-date">${fmtShort(e.createdAt)}</div>`:`<div class="bk-date">${fmtShort(e.createdAt)}</div>`;
       return`<div class="book h${h}" style="width:${w}px;height:${ht}px;background:linear-gradient(160deg,${col[0]},${col[1]})" onclick="openDetail('${esc(e.id)}')"><div class="bk-title"><span>${esc(e.title)}</span></div><div class="bk-meta">${meta}</div></div>`;
