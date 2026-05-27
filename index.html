@@ -383,7 +383,7 @@
       display: flex; align-items: flex-end; gap: 5px;
       padding: 16px 22px 0;
       overflow-x: auto; -webkit-overflow-scrolling: touch;
-      min-height: 230px;
+      min-height: 320px;
     }
     .shelf-books::-webkit-scrollbar { display: none; }
 
@@ -397,8 +397,8 @@
     }
     .book:hover, .book:active { transform: translateY(-8px); }
 
-    .bk-title { position: absolute; top: 12px; left: 0; right: 0; bottom: 26px; overflow: hidden; padding: 4px 5px 4px; display: flex; align-items: flex-start; justify-content: center; }
-    .bk-title span { writing-mode: vertical-rl; text-orientation: mixed; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.95); white-space: nowrap; overflow: hidden; max-height: 100%; line-height: 1.2; letter-spacing: 0.02em; text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+    .bk-title { position: absolute; top: 12px; left: 0; right: 0; bottom: 26px; overflow: hidden; padding: 2px 5px; display: flex; align-items: flex-start; justify-content: center; }
+    .bk-title span { writing-mode: vertical-rl; text-orientation: mixed; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.95); white-space: nowrap; overflow: hidden; max-height: 100%; line-height: 1; letter-spacing: 0; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
     .bk-meta { position: absolute; bottom: 4px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 1px; }
     .bk-date { font-size: 7.5px; color: rgba(255,255,255,0.65); font-weight: 700; white-space: nowrap; }
     .bk-ico  { font-size: 10px; line-height: 1; }
@@ -653,7 +653,7 @@ function bookW(id,heat=1,noteLen=0){
 }
 function bookH(id,heat=1,titleLen=0){
   // 日本語1文字 ≈ 15px（11px font + metrics）、英語は少ない→最大値で吸収
-  const minH=120, maxH=260;
+  const minH=120, maxH=300;
   const fromTitle=Math.min(maxH, minH + Math.max(0, titleLen-4)*15);
   return fromTitle+(heat-1)*6;
 }
