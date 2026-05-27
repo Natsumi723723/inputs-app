@@ -953,7 +953,7 @@ function openSheet(id){
   document.getElementById('bd').onclick=closeAll;
 }
 function closeAll(doRender=true){
-  ['add-sheet','det-sheet'].forEach(id=>document.getElementById(id).classList.remove('open'));
+  ['add-sheet','det-sheet','cloud-sheet'].forEach(id=>document.getElementById(id).classList.remove('open'));
   document.getElementById('bd').classList.remove('on');
   document.getElementById('fab').classList.remove('open');
   if(doRender){renderTL();if(curTab==='shelf')renderShelf();}
