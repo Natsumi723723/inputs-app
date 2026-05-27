@@ -1255,7 +1255,7 @@ async function manualSync(){
 load();seed();renderTL();tick();setInterval(tick,30000);
 setTheme(localStorage.getItem('inputs_theme')||'pink');
 initSbClient();
-if(sbClient) syncFromCloud();
+if(sbClient){ syncFromCloud(); setInterval(syncFromCloud, 60000); }
 </script>
 </body>
 </html>
