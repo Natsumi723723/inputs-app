@@ -276,7 +276,7 @@
     .cat-chip:hover { background: var(--border); }
     .cat-chip.sel { border-color: var(--accent); background: var(--accent-lt); }
     .cat-ico { width: 34px; height: 34px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
-    .cat-lbl { font-size: 9.5px; font-weight: 800; color: var(--sub); }
+    .cat-lbl { font-size: 9.5px; font-weight: 800; color: #A09CBC; }
     .cat-chip.sel .cat-lbl { color: var(--accent); }
 
     /* ── Heat selector ── */
@@ -291,43 +291,43 @@
     }
     .hb:hover { transform: scale(1.2); }
     .hb.on { color: var(--accent); background: var(--accent-lt); border-color: var(--accent); transform: scale(1.1); }
-    .heat-lbl { font-size: 11.5px; font-weight: 800; color: var(--sub); height: 18px; margin-bottom: 12px; transition: color 0.2s; }
+    .heat-lbl { font-size: 11.5px; font-weight: 800; color: #A09CBC; height: 18px; margin-bottom: 12px; transition: color 0.2s; }
     .heat-lbl.hot { color: var(--accent); }
 
     /* ── Form ── */
     .field { margin-bottom: 13px; }
-    .flabel { font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: var(--sub); margin-bottom: 6px; }
-    .field input, .field textarea { width: 100%; background: var(--bg); border: 2px solid transparent; border-radius: 14px; padding: 11px 14px; font-size: 14px; font-family: var(--font); color: var(--text); outline: none; transition: border-color 0.14s, background 0.14s; resize: none; -webkit-appearance: none; }
-    .field input:focus, .field textarea:focus { border-color: var(--accent); background: #fff; }
-    .field input::placeholder, .field textarea::placeholder { color: var(--sub); opacity: 0.55; }
+    .flabel { font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: #C4C0DC; margin-bottom: 6px; }
+    .field input, .field textarea { width: 100%; background: #211B35; border: 2px solid var(--border); border-radius: 14px; padding: 11px 14px; font-size: 14px; font-family: var(--font); color: var(--text); outline: none; transition: border-color 0.14s, background 0.14s; resize: none; -webkit-appearance: none; }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); background: #2A2240; }
+    .field input::placeholder, .field textarea::placeholder { color: #6B6888; opacity: 1; }
     .field textarea { min-height: 78px; line-height: 1.5; }
-    .url-hint { font-size: 11px; color: var(--sub); margin-top: 5px; min-height: 15px; }
+    .url-hint { font-size: 11px; color: #9E9ABE; margin-top: 5px; min-height: 15px; }
     .url-hint.ok { color: #10B981; }
     .url-hint.err { color: #F87171; }
     .save-btn { width: 100%; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; color: white; font-size: 15px; font-weight: 800; font-family: var(--font); cursor: pointer; letter-spacing: 0.02em; box-shadow: 0 6px 18px rgba(0,0,0,0.2); transition: opacity 0.14s, transform 0.14s; margin-top: 6px; }
     .save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
     /* 感情タグ */
     .emo-row { display: flex; flex-wrap: wrap; gap: 7px; padding-bottom: 4px; }
-    .emo-btn { padding: 7px 13px; border-radius: 24px; border: 1.5px solid var(--border); background: var(--bg); color: var(--sub); font-size: 11.5px; font-weight: 800; font-family: var(--font); cursor: pointer; transition: all 0.16s; letter-spacing: 0.04em; white-space: nowrap; }
+    .emo-btn { padding: 7px 13px; border-radius: 24px; border: 1.5px solid var(--border); background: var(--bg); color: #A09CBC; font-size: 11.5px; font-weight: 800; font-family: var(--font); cursor: pointer; transition: all 0.16s; letter-spacing: 0.04em; white-space: nowrap; }
     .emo-btn:hover { border-color: var(--accent); color: var(--accent); }
     .emo-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
     /* URLトグル */
-    .url-tog { background: none; border: none; font-size: 11px; font-weight: 700; color: var(--sub); font-family: var(--font); cursor: pointer; padding: 2px 0 14px; text-decoration: underline; text-underline-offset: 3px; display: block; transition: color 0.14s; }
+    .url-tog { background: none; border: none; font-size: 11px; font-weight: 700; color: #9E9ABE; font-family: var(--font); cursor: pointer; padding: 2px 0 14px; text-decoration: underline; text-underline-offset: 3px; display: block; transition: color 0.14s; }
     .url-tog:hover { color: var(--accent); }
     .url-extra.hide { display: none; }
     /* タイトル強調 */
-    .title-field input { font-size: 15px; font-weight: 700; background: var(--bg); border: 2px solid transparent; border-radius: 14px; padding: 13px 16px; width: 100%; font-family: var(--font); color: var(--text); outline: none; transition: border-color 0.14s; margin-bottom: 14px; -webkit-appearance: none; }
-    .title-field input:focus { border-color: var(--accent); }
-    .title-field input::placeholder { color: var(--sub); opacity: 0.55; font-weight: 500; }
+    .title-field input { font-size: 15px; font-weight: 700; background: #211B35; border: 2px solid var(--border); border-radius: 14px; padding: 13px 16px; width: 100%; font-family: var(--font); color: var(--text); outline: none; transition: border-color 0.14s, background 0.14s; margin-bottom: 14px; -webkit-appearance: none; }
+    .title-field input:focus { border-color: var(--accent); background: #2A2240; }
+    .title-field input::placeholder { color: #6B6888; opacity: 1; font-weight: 500; }
 
     /* ── Detail ── */
     .det-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px 5px 8px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 14px; }
     .det-title { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.4; margin-bottom: 10px; }
-    .det-note { font-size: 13.5px; color: var(--sub); line-height: 1.6; background: var(--bg); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
+    .det-note { font-size: 13.5px; color: #CCC9E4; line-height: 1.6; background: #211B35; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
     .det-emos { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .det-emo  { padding: 4px 11px; border-radius: 20px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; }
     .det-link { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--accent); font-weight: 700; text-decoration: none; background: var(--accent-lt); padding: 9px 14px; border-radius: 12px; margin-bottom: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .det-meta { font-size: 11px; color: var(--sub); margin-bottom: 20px; }
+    .det-meta { font-size: 11px; color: #9E9ABE; margin-bottom: 20px; }
     .det-heat { display: flex; gap: 4px; align-items: center; margin-bottom: 14px; }
     .det-heat span { font-size: 17px; font-family: serif; }
     .del-btn { padding: 6px 14px; border-radius: 20px; background: transparent; border: 1px solid #FECACA; color: #F87171; font-size: 11px; font-weight: 700; font-family: var(--font); cursor: pointer; transition: background 0.14s; margin-top: 8px; }
