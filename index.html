@@ -113,8 +113,31 @@
     .tdot:hover { transform: scale(1.25); }
     .tdot.on { transform: scale(1.18); border-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 
-    .hbtn { width: 34px; height: 34px; border-radius: 11px; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.12s; flex-shrink: 0; }
+    .hbtn { width: 34px; height: 34px; border-radius: 11px; background: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.12s; flex-shrink: 0; position: relative; }
     .hbtn:hover { background: var(--border); }
+    .sync-dot { position: absolute; top: 5px; right: 5px; width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1.5px solid var(--bg); transition: background 0.3s; }
+    .sync-dot.ok     { background: #10B981; }
+    .sync-dot.error  { background: #F87171; }
+    .sync-dot.syncing{ background: #F59E0B; animation: dotPulse 0.8s ease-in-out infinite; }
+    /* Cloud sheet */
+    .cloud-section { margin-bottom: 18px; }
+    .cloud-lbl { font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: #C4C0DC; margin-bottom: 6px; }
+    .cloud-input { width: 100%; background: #211B35; border: 2px solid var(--border); border-radius: 14px; padding: 10px 14px; font-size: 13px; font-family: var(--font); color: var(--text); outline: none; transition: border-color 0.14s; -webkit-appearance: none; }
+    .cloud-input:focus { border-color: var(--accent); }
+    .cloud-input::placeholder { color: #6B6888; }
+    .sync-code-row { display: flex; gap: 8px; align-items: center; }
+    .sync-code-val { flex: 1; background: #211B35; border: 2px solid var(--border); border-radius: 14px; padding: 10px 14px; font-size: 11px; font-family: monospace; color: #A09CBC; word-break: break-all; line-height: 1.4; }
+    .sync-code-copy { flex-shrink: 0; padding: 8px 14px; border-radius: 12px; background: var(--accent-lt); border: 1.5px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 800; font-family: var(--font); cursor: pointer; white-space: nowrap; transition: background 0.14s; }
+    .sync-code-copy:hover { background: var(--accent); color: #fff; }
+    .cloud-hint { font-size: 11px; color: #9E9ABE; margin-top: 5px; line-height: 1.5; }
+    .cloud-status-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px; background: #211B35; margin-bottom: 18px; }
+    .cloud-status-ico { font-size: 16px; }
+    .cloud-status-txt { font-size: 12px; font-weight: 700; color: #C4C0DC; flex: 1; }
+    .cloud-status-sub { font-size: 10px; color: #9E9ABE; }
+    .cloud-connect-btn { width: 100%; padding: 13px; border-radius: 16px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; color: white; font-size: 14px; font-weight: 800; font-family: var(--font); cursor: pointer; margin-top: 4px; transition: opacity 0.14s; }
+    .cloud-connect-btn:hover { opacity: 0.88; }
+    .cloud-sync-now { width: 100%; padding: 10px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); color: #A09CBC; font-size: 12px; font-weight: 800; font-family: var(--font); cursor: pointer; margin-top: 8px; transition: border-color 0.14s, color 0.14s; }
+    .cloud-sync-now:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── Views ── */
     .view { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
@@ -406,6 +429,10 @@
       <div class="tdot"    id="tdot-teal"   style="background:#10B981" onclick="setTheme('teal')"></div>
       <div class="tdot"    id="tdot-noir"   style="background:#52525B" onclick="setTheme('noir')"></div>
     </div>
+    <button class="hbtn" id="cloud-btn" onclick="openCloud()">
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M12.5 5.1C12.2 2.8 10.3 1 8 1C6.1 1 4.5 2.1 3.7 3.7C2.2 4 1 5.3 1 6.9C1 8.6 2.4 10 4 10H12.2C13.8 10 15 8.8 15 7.2C15 5.7 13.9 4.5 12.5 5.1Z" stroke="#9B97B2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="sync-dot" id="sync-dot"></span>
+    </button>
     <button class="hbtn" id="search-hbtn" onclick="toggleSearch()"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="#9B97B2" stroke-width="1.8"/><line x1="10" y1="10" x2="13.5" y2="13.5" stroke="#9B97B2" stroke-width="1.8" stroke-linecap="round"/></svg></button>
   </div>
 
@@ -451,6 +478,16 @@
   </button>
 
   <div class="bd" id="bd"></div>
+
+  <!-- Cloud sync sheet -->
+  <div class="sheet" id="cloud-sheet">
+    <div class="sh-handle"></div>
+    <div class="sh-head">
+      <div class="sh-title-static">☁️ クラウド同期</div>
+      <button class="sh-close" onclick="closeAll()">✕</button>
+    </div>
+    <div class="sh-body" id="cloud-body"></div>
+  </div>
 
   <!-- Add sheet -->
   <div class="sheet" id="add-sheet">
@@ -500,6 +537,7 @@
   </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 const CATS=[
   {id:'web',   label:'Web',    mLabel:'WEB / SNS', icon:'🌐'},
@@ -954,9 +992,14 @@ function saveEntry(){
   const url=document.getElementById('iUrl').value.trim(),note=document.getElementById('iNote').value.trim();
   if(editId){
     const idx=entries.findIndex(e=>e.id===editId);
-    if(idx>=0) entries[idx]={...entries[idx],type:selCat,title,url,note,tokimeki:selHeat,emotions:[...selEmos]};
+    if(idx>=0){
+      entries[idx]={...entries[idx],type:selCat,title,url,note,tokimeki:selHeat,emotions:[...selEmos]};
+      pushToCloud(entries[idx]);
+    }
   } else {
-    entries.unshift({id:uid(),type:selCat,title,url,note,createdAt:new Date().toISOString(),tokimeki:selHeat,emotions:[...selEmos]});
+    const newEntry={id:uid(),type:selCat,title,url,note,createdAt:new Date().toISOString(),tokimeki:selHeat,emotions:[...selEmos]};
+    entries.unshift(newEntry);
+    pushToCloud(newEntry);
   }
   editId=null;persist();closeAll();
 }
@@ -1002,15 +1045,224 @@ function openEdit(){
 
 function deleteEntry(){
   if(!confirm('このINPUTを削除しますか？'))return;
-  entries=entries.filter(e=>e.id!==currentDetailId);persist();closeAll();
+  const id=currentDetailId;
+  entries=entries.filter(e=>e.id!==id);
+  deleteFromCloud(id);
+  persist();closeAll();
 }
 
 // ─── Clock ─────────────────────────────────────────────────────────────────
 function tick(){document.getElementById('stime').textContent=new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit',hour12:false});}
 
+// ─── Supabase Cloud Sync ───────────────────────────────────────────────────
+const SB_URL_KEY  = 'inputs_sb_url';
+const SB_KEY_KEY  = 'inputs_sb_key';
+const USER_ID_KEY = 'inputs_user_id';
+let sbClient = null;
+let sbUserId = '';
+let syncStatus = 'none'; // none | syncing | ok | error
+let lastSyncAt = null;
+
+function getSbUserId(){
+  let id = localStorage.getItem(USER_ID_KEY);
+  if(!id){ id = uid()+uid(); localStorage.setItem(USER_ID_KEY, id); }
+  return id;
+}
+
+function initSbClient(){
+  const url = localStorage.getItem(SB_URL_KEY)||'';
+  const key = localStorage.getItem(SB_KEY_KEY)||'';
+  sbUserId = getSbUserId();
+  if(!url||!key){ sbClient=null; return false; }
+  try{
+    sbClient = window.supabase.createClient(url, key);
+    return true;
+  }catch(e){ sbClient=null; return false; }
+}
+
+function setSyncStatus(s){
+  syncStatus=s;
+  const dot=document.getElementById('sync-dot');
+  if(!dot)return;
+  dot.className='sync-dot';
+  if(s==='ok'||s==='syncing'||s==='error') dot.classList.add(s);
+}
+
+async function syncFromCloud(){
+  if(!sbClient)return;
+  setSyncStatus('syncing');
+  try{
+    const{data,error}=await sbClient.from('entries').select('*').eq('user_id',sbUserId);
+    if(error)throw error;
+    if(data&&data.length){
+      const cloudMap=Object.fromEntries(data.map(e=>[e.id,{
+        id:e.id, type:e.type, title:e.title, url:e.url||'', note:e.note||'',
+        createdAt:e.created_at, tokimeki:e.tokimeki||3, emotions:e.emotions||[]
+      }]));
+      // merge: cloud wins on conflict, keep local-only
+      const localOnly=entries.filter(e=>!cloudMap[e.id]);
+      entries=[...Object.values(cloudMap),...localOnly].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+      persist();
+    }
+    lastSyncAt=new Date();
+    setSyncStatus('ok');
+    renderCurrent();
+  }catch(e){
+    console.error('syncFromCloud',e);
+    setSyncStatus('error');
+  }
+}
+
+async function pushToCloud(entry){
+  if(!sbClient)return;
+  try{
+    await sbClient.from('entries').upsert({
+      id:entry.id, user_id:sbUserId, type:entry.type, title:entry.title,
+      url:entry.url||'', note:entry.note||'', created_at:entry.createdAt,
+      tokimeki:entry.tokimeki||3, emotions:entry.emotions||[]
+    });
+    lastSyncAt=new Date(); setSyncStatus('ok');
+  }catch(e){ setSyncStatus('error'); }
+}
+
+async function deleteFromCloud(id){
+  if(!sbClient)return;
+  try{ await sbClient.from('entries').delete().eq('id',id).eq('user_id',sbUserId); }
+  catch(e){ setSyncStatus('error'); }
+}
+
+async function pushAllToCloud(){
+  if(!sbClient||!entries.length)return;
+  setSyncStatus('syncing');
+  try{
+    const rows=entries.map(e=>({
+      id:e.id, user_id:sbUserId, type:e.type, title:e.title,
+      url:e.url||'', note:e.note||'', created_at:e.createdAt,
+      tokimeki:e.tokimeki||3, emotions:e.emotions||[]
+    }));
+    const{error}=await sbClient.from('entries').upsert(rows);
+    if(error)throw error;
+    lastSyncAt=new Date(); setSyncStatus('ok');
+  }catch(e){ setSyncStatus('error'); }
+}
+
+function fmtSyncTime(){
+  if(!lastSyncAt)return'まだ同期していません';
+  const diff=Math.round((Date.now()-lastSyncAt)/1000);
+  if(diff<60)return`${diff}秒前`;
+  if(diff<3600)return`${Math.floor(diff/60)}分前`;
+  return lastSyncAt.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+}
+
+function renderCurrent(){
+  if(curTab==='tl')renderTL();
+  else if(curTab==='shelf')renderShelf();
+  else if(curTab==='dash')renderDashboard();
+}
+
+// ─── Cloud Sheet ───────────────────────────────────────────────────────────
+function openCloud(){
+  renderCloudSheet();
+  openSheet('cloud-sheet');
+}
+
+function renderCloudSheet(){
+  const el=document.getElementById('cloud-body');
+  if(!el)return;
+  const url=localStorage.getItem(SB_URL_KEY)||'';
+  const key=localStorage.getItem(SB_KEY_KEY)||'';
+  const userId=getSbUserId();
+  const isConnected=!!sbClient;
+
+  const statusIcon = isConnected ? (syncStatus==='error'?'❌':'✅') : '🔌';
+  const statusTxt  = isConnected ? (syncStatus==='error'?'同期エラー':'接続済み') : '未接続';
+  const statusSub  = isConnected ? `最終同期: ${fmtSyncTime()}` : 'URLとキーを入力して接続してください';
+
+  el.innerHTML=`
+    <div class="cloud-status-bar">
+      <span class="cloud-status-ico">${statusIcon}</span>
+      <div><div class="cloud-status-txt">${statusTxt}</div><div class="cloud-status-sub">${statusSub}</div></div>
+    </div>
+
+    <div class="cloud-section">
+      <div class="cloud-lbl">Supabase Project URL</div>
+      <input class="cloud-input" id="sb-url-in" type="url" placeholder="https://xxxx.supabase.co" value="${esc(url)}" autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="cloud-section">
+      <div class="cloud-lbl">Anon Key</div>
+      <input class="cloud-input" id="sb-key-in" type="password" placeholder="eyJhbGciOiJIUzI1NiIs..." value="${esc(key)}" autocomplete="off">
+    </div>
+
+    <button class="cloud-connect-btn" onclick="connectCloud()">
+      ${isConnected?'再接続する':'接続する'}
+    </button>
+
+    <div class="cloud-section" style="margin-top:22px">
+      <div class="cloud-lbl">同期コード（別の端末で同じデータを使うとき）</div>
+      <div class="sync-code-row">
+        <div class="sync-code-val" id="sync-code-display">${userId}</div>
+        <button class="sync-code-copy" onclick="copySyncCode()">コピー</button>
+      </div>
+      <p class="cloud-hint">📱 スマホなど別の端末でこのアプリを開き、同じ URL・Key を入力した後このコードを貼り付けると同じデータが見られます。</p>
+
+      <div class="cloud-lbl" style="margin-top:14px">別端末の同期コードを入力</div>
+      <div class="sync-code-row">
+        <input class="cloud-input" id="sync-code-in" placeholder="他の端末のコードをここに貼り付け" style="flex:1;font-size:11px;font-family:monospace">
+        <button class="sync-code-copy" onclick="applySyncCode()">適用</button>
+      </div>
+    </div>
+
+    ${isConnected?`<button class="cloud-sync-now" onclick="manualSync()">🔄 今すぐ同期</button>`:''}
+  `;
+}
+
+async function connectCloud(){
+  const url=(document.getElementById('sb-url-in')?.value||'').trim();
+  const key=(document.getElementById('sb-key-in')?.value||'').trim();
+  if(!url||!key){alert('URLとAnon Keyを入力してください');return;}
+  localStorage.setItem(SB_URL_KEY,url);
+  localStorage.setItem(SB_KEY_KEY,key);
+  if(initSbClient()){
+    await pushAllToCloud();
+    await syncFromCloud();
+    renderCloudSheet();
+  }else{
+    alert('接続できませんでした。URLとKeyを確認してください。');
+  }
+}
+
+function copySyncCode(){
+  const code=getSbUserId();
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn=document.querySelector('.sync-code-copy');
+    if(btn){btn.textContent='コピーした！';setTimeout(()=>btn.textContent='コピー',1500);}
+  }).catch(()=>{
+    // fallback: select text
+    const el=document.getElementById('sync-code-display');
+    if(el){const r=document.createRange();r.selectNode(el);window.getSelection().removeAllRanges();window.getSelection().addRange(r);}
+  });
+}
+
+function applySyncCode(){
+  const code=(document.getElementById('sync-code-in')?.value||'').trim();
+  if(!code){alert('同期コードを入力してください');return;}
+  if(!confirm('同期コードを変更すると、このデバイスのデータが入力したコードのデータに置き換わります。続けますか？'))return;
+  localStorage.setItem(USER_ID_KEY,code);
+  sbUserId=code;
+  syncFromCloud().then(()=>renderCloudSheet());
+}
+
+async function manualSync(){
+  await syncFromCloud();
+  renderCloudSheet();
+}
+
 // ─── Init ──────────────────────────────────────────────────────────────────
 load();seed();renderTL();tick();setInterval(tick,30000);
 setTheme(localStorage.getItem('inputs_theme')||'pink');
+initSbClient();
+if(sbClient) syncFromCloud();
 
 // ─── PWA Service Worker ────────────────────────────────────────────────────
 if('serviceWorker' in navigator){
