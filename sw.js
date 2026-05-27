@@ -1,4 +1,4 @@
-const CACHE = 'inputs-v10';
+const CACHE = 'inputs-v11';
 const ASSETS = [
   './',
   './index.html',
